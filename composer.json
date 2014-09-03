@@ -1,0 +1,21 @@
+{
+	"name": "spacedealer/geonames-api",
+	"description": "Guzzle based geonames.org api client",
+	"authors": [
+		{
+			"name": "Dirk Adler",
+			"email": "adler@spacedealer.de"
+		}
+	],
+	"require": {
+		"guzzlehttp/guzzle-services": "0.3.*"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "3.7.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"spacedealer\\geonames\\": "src/"
+		}
+	}
+}
