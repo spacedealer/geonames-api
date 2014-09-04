@@ -8,7 +8,7 @@
  */
 
 
-namespace spacedealer\geonames;
+namespace spacedealer\geonames\api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\CommandInterface;
@@ -54,7 +54,7 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
  * @method Response wikipediaBoundingBox() wikipediaBoundingBox(array $params)
  * @method Response wikipediaSearch() wikipediaSearch(array $params)
  *
- * @package spacedealer\geonames
+ * @package spacedealer\geonames\api
  */
 class Geonames extends GuzzleClient
 {

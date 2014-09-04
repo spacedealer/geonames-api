@@ -1,6 +1,6 @@
 <?php
 
-namespace spacedealer\geonames;
+namespace spacedealer\geonames\api;
 
 /**
  * Response.php file.

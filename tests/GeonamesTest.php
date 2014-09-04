@@ -19,9 +19,9 @@ class GeonamesTest extends PHPUnit_Framework_TestCase
      */
     public function testCommands($command, $params)
     {
-        $client = new spacedealer\geonames\Geonames($this->username);
+        $client = new spacedealer\geonames\api\Geonames($this->username);
 
-        /** @var \spacedealer\geonames\Response $response */
+        /** @var \spacedealer\geonames\api\Response $response */
         $response = $client->$command($params);
 
         // skip test if user is over limit

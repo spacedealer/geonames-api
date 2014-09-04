@@ -15,7 +15,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"spacedealer\\geonames\\": "src/"
+			"spacedealer\\geonames\\api\\": "src/"
 		}
 	}
 }

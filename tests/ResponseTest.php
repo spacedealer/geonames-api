@@ -14,7 +14,7 @@ class ResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testNotOk()
     {
-        $response = new \spacedealer\geonames\Response([
+        $response = new \spacedealer\geonames\api\Response([
             'status' => [
                 'value' => 0,
                 'message' => 'unkown',
@@ -29,8 +29,8 @@ class ResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testSingleRootProperties()
     {
-        /** @var \spacedealer\geonames\Response $response */
-        $response = new \spacedealer\geonames\Response([
+        /** @var \spacedealer\geonames\api\Response $response */
+        $response = new \spacedealer\geonames\api\Response([
             'status' => [
                 'code' => 0,
             ]
@@ -45,8 +45,8 @@ class ResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testMultipleRootProperties()
     {
-        /** @var \spacedealer\geonames\Response $response */
-        $response = new \spacedealer\geonames\Response([
+        /** @var \spacedealer\geonames\api\Response $response */
+        $response = new \spacedealer\geonames\api\Response([
             'lat' => 0,
             'lng' => 0,
         ]);
