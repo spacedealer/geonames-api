@@ -248,9 +248,7 @@ return [
                 ]
             ]
         ],
-        /* 'extendedFindNearby' => array(
-          'output' => 'xml', // not supported
-          ), */
+        // todo: add xml only command: extendedFindNearby
         // Result : returns the closest toponym for the lat/lng query as xml document
         // Info: http://www.geonames.org/export/web-services.html#findNearby
         // Expected Results: view-source:http://api.geonames.org/findNearbyJSON?formatted=true&lat=48.865618158309374&lng=2.344207763671875&fclass=P&fcode=PPLA&fcode=PPL&fcode=PPLC&username=demo&style=full
@@ -278,7 +276,7 @@ return [
                     'location' => 'query',
                 ],
                 'radius' => [
-                    'type' => 'integer',
+                    'type' => 'numeric',
                     'location' => 'query',
                 ],
                 'style' => [
@@ -323,7 +321,7 @@ return [
                     'required' => true,
                 ],
                 'radius' => [
-                    'type' => 'integer',
+                    'type' => 'numeric',
                     'location' => 'query',
                 ],
                 'style' => [
@@ -366,7 +364,7 @@ return [
                     'location' => 'query',
                 ],
                 'radius' => [
-                    'type' => 'integer',
+                    'type' => 'numeric',
                     'location' => 'query',
                 ],
                 'style' => [
@@ -420,7 +418,7 @@ return [
                     'required' => true,
                 ],
                 'radius' => [
-                    'type' => 'integer',
+                    'type' => 'numeric',
                     'location' => 'query',
                 ],
                 'maxRows' => [
@@ -437,47 +435,189 @@ return [
         // Result : returns the nearest street segments for the given latitude/longitude
         // Info: http://www.geonames.org/maps/osm-reverse-geocoder.html#findNearbyStreetsOSM
         // Expected Results: view-source:http://api.geonames.org/findNearbyStreetsOSMJSON?formatted=true&lat=37.451&lng=-122.18&username=demo&style=full
-//        'findNearbyStreetsOSM' => array(
-//            'parameters' => array('lat', 'lng'),
-//            'root' => 'streetSegment',
-//        ),
+        'findNearbyStreetsOSM' => [
+            'httpMethod' => 'GET',
+            'uri' => 'findNearbyStreetsOSMJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'radius' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'maxRows' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns a weather station with the most recent weather observation
         // Info: http://www.geonames.org/export/JSON-webservices.html#findNearByWeatherJSON
         // Expected Results
-//        'findNearByWeather' => array(
-//            'parameters' => array('lat', 'lng'),
-//            'root' => 'weatherObservation',
-//        ),
+        'findNearByWeather' => [
+            'httpMethod' => 'GET',
+            'uri' => 'findNearByWeatherJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'radius' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns a list of wikipedia entries
         // Info: http://www.geonames.org/export/wikipedia-webservice.html#findNearbyWikipedia
         // Expected Resuls: view-source:http://api.geonames.org/findNearbyWikipediaJSON?formatted=true&lat=47&lng=9&username=demo&style=full
-//        'findNearbyWikipedia' => array(
-//            'parameters' => array('lat', 'lng', 'radius', 'maxRows', 'lang'),
-//            'root' => 'geonames',
-//        ),
+        'findNearbyWikipedia' => [
+            'httpMethod' => 'GET',
+            'uri' => 'findNearbyWikipediaJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'postalcode' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'country' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'radius' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'maxRows' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                ],
+                'lang' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // US Only
         // Result : returns the nearest address for the given latitude/longitude, the street number is an 'educated guess' using an interpolation of street number at the end of a street segment.
         // Info: http://www.geonames.org/maps/us-reverse-geocoder.html#findNearestAddress
         // Expected Results: view-source:http://api.geonames.org/findNearestAddressJSON?formatted=true&lat=37.451&lng=-122.18&username=demo&style=full
-//        'findNearestAddress' => array(
-//            'parameters' => array('lat', 'lng'),
-//            'root' => 'address',
-//        ),
+        'findNearestAddress' => [
+            'httpMethod' => 'GET',
+            'uri' => 'findNearestAddressJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // US Only
         // Result : returns the nearest intersection for the given latitude/longitude
         // Info: http://www.geonames.org/maps/us-reverse-geocoder.html#findNearestIntersection
         // Expected Results: view-source:http://api.geonames.org/findNearestIntersectionJSON?formatted=true&lat=37.451&lng=-122.18&username=demo&style=full
-//        'findNearestIntersection' => array(
-//            'parameters' => array('lat', 'lng'),
-//            'root' => 'intersection',
-//        ),
+        'findNearestIntersection' => [
+            'httpMethod' => 'GET',
+            'uri' => 'findNearestIntersectionJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns the nearest intersection for the given latitude/longitude
         // Info: http://www.geonames.org/maps/osm-reverse-geocoder.html#findNearestIntersectionOSM
         // Expected Results: view-source:http://api.geonames.org/findNearestIntersectionOSMJSON?formatted=true&lat=37.451&lng=-122.18&username=demo&style=full
-//        'findNearestIntersectionOSM' => array(
-//            'parameters' => array('lat', 'lng'),
-//            'root' => 'intersection',
-//        ),
+        'findNearestIntersectionOSM' => [
+            'httpMethod' => 'GET',
+            'uri' => 'findNearestIntersectionOSMJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'radius' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Returns : geoname information for the given geonameId
         // Info: none
         // Expected Results: view-source:http://api.geonames.org/getJSON?formatted=true&geonameId=6295610&username=demo&style=full
@@ -530,45 +670,150 @@ return [
         // Result : returns a list of GeoName records, ordered by hierarchy level. The top hierarchy (continent) is the first element in the list
         // Info: http://www.geonames.org/export/place-hierarchy.html#hierarchy
         // Expected Results: view-source:http://api.geonames.org/hierarchyJSON?formatted=true&geonameId=2657896&username=demo&style=full
-//        'hierarchy' => array(
-//            'parameters' => array('geonameId'),
-//            'root' => 'geonames',
-//        ),
+        'hierarchy' => [
+            'httpMethod' => 'GET',
+            'uri' => 'hierarchyJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'geonameId' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // US Only
         // Result : returns the neighbourhood for the given latitude/longitude
         // Info: http://www.geonames.org/export/web-services.html#neighbourhood
         // Expected Results: view-source:http://api.geonames.org/neighbourhoodJSON?formatted=true&lat=40.78343&lng=-73.96625&username=demo&style=full
-//        'neighbourhoud' => array(
-//            'parameters' => array('lat', 'lng'),
-//            'root' => 'neighbourhood',
-//        ),
+        'neighbourhoud' => [
+            'httpMethod' => 'GET',
+            'uri' => 'neighbourhoodJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns the neighbours of a toponym, currently only implemented for countries
         // Info: http://www.geonames.org/export/place-hierarchy.html#neighbours
         // Expected Results: view-source:http://api.geonames.org/neighboursJSON?formatted=true&geonameId=2658434&username=demo&style=full
-//        'neighbours' => array(
-//            'parameters' => array('geonameId'),
-//            'root' => 'geonames',
-//        ),
+        'neighbours' => [
+            'httpMethod' => 'GET',
+            'uri' => 'neighboursJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'geonameId' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'country' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns the ocean or sea for the given latitude/longitude
         // Info: http://www.geonames.org/export/web-services.html#ocean
         // Expected Results: view-source:http://api.geonames.org/oceanJSON?formatted=true&lat=40.78343&lng=-43.96625&username=demo&style=full
-//        'ocean' => array(
-//            'parameters' => array('lat', 'lng'),
-//            'root' => 'ocean'
-//        ),
+        'ocean' => [
+            'httpMethod' => 'GET',
+            'uri' => 'neighbourhoodJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'radius' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : countries for which postal code geocoding is available.
         // Info: http://www.geonames.org/export/web-services.html#postalCodeCountryInfo
         // Expected Results: view-source:http://api.geonames.org/postalCodeCountryInfoJSON?formatted=true&&username=demo&style=full
-//        'postalCodeCountryInfo' => array(
-//            'root' => 'geonames',
-//        ),
+        'postalCodeCountryInfo' => [
+            'httpMethod' => 'GET',
+            'uri' => 'postalCodeCountryInfoJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns a list of places for the given postalcode in JSON format
         // Info: /web-services.html#postalCodeLookupJSON
+        //  postalcode,country ,maxRows (default = 20),callback, charset (default = UTF-8)
         // Expected Results: view-source:http://api.geonames.org/postalCodeLookupJSON?formatted=true&postalcode=6600&country=AT&username=demo&style=full
-//        'postalCodeLookup' => array(
-//            'parameters' => array('postalcode', 'country', 'maxRows', 'callback', 'charset'),
-//            'root' => 'postalcodes',
-//        ),
+        'postalCodeLookup' => [
+            'httpMethod' => 'GET',
+            'uri' => 'postalCodeLookupJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'postalcode' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'country' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'maxRows' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                ],
+                'charset' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns a list of postal codes and places for the placename/postalcode query as xml document
         // Info: http://www.geonames.org/export/web-services.html#postalCodeSearch
         // Expected Results: view-source:http://api.geonames.org/postalCodeSearchJSON?formatted=true&postalcode=9011&maxRows=10&username=demo&style=full
@@ -631,61 +876,342 @@ return [
         // Result : returns the names found for the searchterm as xml or json document, the search is using an AND operator
         // Info: http://www.geonames.org/export/geonames-search.html
         // Expected Results: view-source:http://api.geonames.org/searchJSON?formatted=true&q=london&maxRows=10&lang=es&username=demo&style=full
-//        'search' => array(
-//            'parameters' => array('q', 'name', 'name_startsWith', 'name_equals', 'maxRows',
-//                'startRow', 'country', 'countryBias', 'continentCode',
-//                'adminCode1', 'adminCode2', 'adminCode3', 'featureClass',
-//                'featureCode', 'lang', 'type', 'style', 'isNameRequired',
-//                'tag', 'operator', 'charset', 'fuzzy'),
-//            'root' => 'geonames',
-//        ),
+        'search' => [
+            'httpMethod' => 'GET',
+            'uri' => 'searchJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'q' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'name' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'name_startsWith' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'name_equals' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'country' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'countryBias' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'continentCode' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'adminCode1' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'adminCode2' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'adminCode3' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'featureClass' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'featureCode' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'cities' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'startRow' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                ],
+                'maxRows' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                ],
+                'style' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'tag' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'operator' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'charset' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'fuzzy' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'east' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'west' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'north' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'south' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'isNameRequired' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'lang' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'searchlang' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'orderby' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : Returns all siblings of a GeoNames toponym.
         // Info: http://www.geonames.org/export/place-hierarchy.html#siblings
         // Expected Results: view-source:http://api.geonames.org/siblingsJSON?formatted=true&geonameId=3017382&username=demo&style=full
-//        'siblings' => array(
-//            'parameters' => array('geonameId'),
-//            'root' => 'geonames',
-//        ),
+        'siblings' => [
+            'httpMethod' => 'GET',
+            'uri' => 'siblingsJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'geonameId' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : This web service is using Shuttle Radar Topography Mission (SRTM) data with data points located every 3-arc-second (approximately 90 meters) on a latitude/longitude grid
         // Info: http://www.geonames.org/export/web-services.html#srtm3
         // Expected Results: view-source:http://api.geonames.org/srtm3JSON?formatted=true&lat=50.01&lng=10.2&username=demo&style=full
-//        'srtm3' => array(
-//            'parameters' => array('lat', 'lng'),
-//        ),
+        'srtm3' => [
+            'httpMethod' => 'GET',
+            'uri' => 'srtm3JSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : the timezone at the lat/lng with gmt offset (1. January) and dst offset (1. July)
         // Info: http://www.geonames.org/export/web-services.html#timezone
         // Expected Results:  view-source:http://api.geonames.org/timezoneJSON?formatted=true&lat=47.01&lng=10.2&username=demo&style=full
-//        'timezone' => array(
-//            'parameters' => array('lat', 'lng', 'radius', 'date'),
-//        ),
+        'timezone' => [
+            'httpMethod' => 'GET',
+            'uri' => 'timezoneJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'lat' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'lng' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'radius' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                ],
+                'date' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns a list of weather stations with the most recent weather observation
         // Info: http://www.geonames.org/export/JSON-webservices.html#weatherJSON
         // Expected Results: view-source:http://api.geonames.org/weatherJSON?formatted=true&north=44.1&south=-9.9&east=-22.4&west=55.2&username=demo&style=full
-//        'weather' => array(
-//            'parameters' => array('north', 'south', 'east', 'west', 'maxRows'),
-//            'root' => 'weatherObservations',
-//        ),
+        'weather' => [
+            'httpMethod' => 'GET',
+            'uri' => 'weatherJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'north' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'south' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'east' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'west' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'maxRows' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns the weather station and the most recent weather observation for the ICAO code
         // Info: http://www.geonames.org/export/JSON-webservices.html#weatherIcaoJSON
         // Expected Results: view-source:http://api.geonames.org/weatherIcaoJSON?formatted=true&ICAO=LSZH&username=demo&style=full
-//        'weatherIcao' => array(
-//            'parameters' => array('ICAO'),
-//            'root' => 'weatherObservation',
-//        ),
+        'weatherIcao' => [
+            'httpMethod' => 'GET',
+            'uri' => 'weatherIcaoJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'ICAO' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns the wikipedia entries within the bounding box
         // Info: http://www.geonames.org/export/wikipedia-webservice.html#wikipediaBoundingBox
         // Expected Results: view-source:http://api.geonames.org/wikipediaBoundingBoxJSON?formatted=true&north=44.1&south=-9.9&east=-22.4&west=55.2&username=demo&style=full
-//        'wikipediaBoundingBox' => array(
-//            'parameters' => array('north', 'south', 'east', 'west', 'maxRows', 'lang'),
-//            'root' => 'geonames',
-//        ),
+        'wikipediaBoundingBox' => [
+            'httpMethod' => 'GET',
+            'uri' => 'wikipediaBoundingBoxJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'north' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'south' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'east' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'west' => [
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'maxRows' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                ],
+                'lang' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
         // Result : returns the wikipedia entries found for the searchterm
         // Info: http://www.geonames.org/export/wikipedia-webservice.html#wikipediaSearch
         // Expected Results: view-source:http://api.geonames.org/wikipediaSearchJSON?formatted=true&q=london&maxRows=10&username=demo&style=full
-//        'wikipediaSearch' => array(
-//            'parameters' => array('q', 'title', 'lang', 'maxRows'),
-//            'root' => 'geonames',
-//        ),
+        'wikipediaSearch' => [
+            'httpMethod' => 'GET',
+            'uri' => 'wikipediaSearchJSON',
+            'responseModel' => 'default',
+            'parameters' => [
+                'q' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ],
+                'title' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'maxRows' => [
+                    'type' => 'integer',
+                    'location' => 'query',
+                ],
+                'lang' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                ],
+                'username' => [
+                    'type' => 'string',
+                    'location' => 'query',
+                    'required' => true,
+                ]
+            ]
+        ],
     ],
     'models' => [
         'default' => [
