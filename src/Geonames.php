@@ -11,65 +11,65 @@
 namespace spacedealer\geonames;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
-use GuzzleHttp\Message\Response;
 
 /**
  * Class Geonames
  *
  *
- * @method array astergdem()                    astergdem(array $params)
- * @method array children()                    children(array $params)
- * @method array cities()                        cities(array $params)
- * @method array countryCode()                    countryCode(array $params)
- * @method array countryInfo()                    countryInfo(array $params)
- * @method array countrySubdivision()            countrySubdivision(array $params)
- * @method array earthquakes()                    earthquakes(array $params)
- * @method array extendedFindNearby()            extendedFindNearby(array $params)
- * @method array findNearby()                    findNearby(array $params)
- * @method array findNearbyPlaceName()            findNearbyPlaceName(array $params)
- * @method array findNearbyPostalCodes()        findNearbyPostalCodes(array $params)
- * @method array findNearbyStreets()            findNearbyStreets(array $params)
- * @method array findNearbyStreetsOSM()        findNearbyStreetsOSM(array $params)
- * @method array findNearByWeather()            findNearByWeather(array $params)
- * @method array findNearbyWikipedia()            findNearbyWikipedia(array $params)
- * @method array findNearestAddress()            findNearestAddress(array $params)
- * @method array findNearestIntersection()        findNearestIntersection(array $params)
- * @method array findNearestIntersectionOSM()    findNearestIntersectionOSM(array $params)
- * @method array get()                            get(array $params)
- * @method array gtopo30()                        gtopo30(array $params)
- * @method array hierarchy()                    hierarchy(array $params)
- * @method array neighbourhoud()                neighbourhoud(array $params)
- * @method array neighbours()                    neighbours(array $params)
- * @method array postalCodeCountryInfo()        postalCodeCountryInfo(array $params)
- * @method array postalCodeLookup()            postalCodeLookup(array $params)
- * @method \GuzzleHttp\Command\Model postalCodeSearch()            postalCodeSearch(array $params)
- * @method array search()                        search(array $params)
- * @method array siblings()                    siblings(array $params)
- * @method array srtm3()                        srtm3(array $params)
- * @method array timezone()                    timezone(array $params)
- * @method array weather()                        weather(array $params)
- * @method array weatherIcao()                    weatherIcao(array $params)
- * @method array wikipediaBoundingBox()        wikipediaBoundingBox(array $params)
- * @method array wikipediaSearch()                wikipediaSearch(array $params)
+ * @method Response astergdem() astergdem(array $params)
+ * @method Response children() children(array $params)
+ * @method Response cities() cities(array $params)
+ * @method Response countryCode() countryCode(array $params)
+ * @method Response countryInfo() countryInfo(array $params)
+ * @method Response countrySubdivision() countrySubdivision(array $params)
+ * @method Response earthquakes() earthquakes(array $params)
+ * @todo support: Response extendedFindNearby() extendedFindNearby(array $params)
+ * @method Response findNearby() findNearby(array $params)
+ * @method Response findNearbyPlaceName() findNearbyPlaceName(array $params)
+ * @method Response findNearbyPostalCodes() findNearbyPostalCodes(array $params)
+ * @method Response findNearbyStreets() findNearbyStreets(array $params)
+ * @method Response findNearbyStreetsOSM() findNearbyStreetsOSM(array $params)
+ * @method Response findNearByWeather() findNearByWeather(array $params)
+ * @method Response findNearbyWikipedia() findNearbyWikipedia(array $params)
+ * @method Response findNearestAddress() findNearestAddress(array $params)
+ * @method Response findNearestIntersection() findNearestIntersection(array $params)
+ * @method Response findNearestIntersectionOSM() findNearestIntersectionOSM(array $params)
+ * @method Response get() get(array $params)
+ * @method Response gtopo30() gtopo30(array $params)
+ * @method Response hierarchy() hierarchy(array $params)
+ * @method Response neighbourhoud() neighbourhoud(array $params)
+ * @method Response neighbours() neighbours(array $params)
+ * @method Response postalCodeCountryInfo() postalCodeCountryInfo(array $params)
+ * @method Response postalCodeLookup() postalCodeLookup(array $params)
+ * @method Response postalCodeSearch() postalCodeSearch(array $params)
+ * @method Response search() search(array $params)
+ * @method Response siblings() siblings(array $params)
+ * @method Response srtm3() srtm3(array $params)
+ * @method Response timezone() timezone(array $params)
+ * @method Response weather() weather(array $params)
+ * @method Response weatherIcao() weatherIcao(array $params)
+ * @method Response wikipediaBoundingBox() wikipediaBoundingBox(array $params)
+ * @method Response wikipediaSearch() wikipediaSearch(array $params)
  *
  * @package spacedealer\geonames
  */
 class Geonames extends GuzzleClient
 {
-   // public $username;
-    public $client;
-    public $description;
-
+    /**
+     * @param string $username
+     * @param string $lang
+     */
     public function __construct($username, $lang = 'en')
     {
-      //  $this->username = $username;
-        $this->client = $client = new Client();
+        //  $this->username = $username;
+        $client = new Client();
 
         // load description config file
         $descriptionConfig = require(__DIR__ . '/resources/config.php');
-        $this->description = $description = new Description($descriptionConfig);
+        $description = new Description($descriptionConfig);
 
         parent::__construct($client, $description, [
             'defaults' => [
@@ -77,5 +77,15 @@ class Geonames extends GuzzleClient
                 'lang' => $lang,
             ]
         ]);
+    }
+
+    /**
+     * @param CommandInterface $command
+     * @return mixed|null|Response
+     */
+    public function execute(CommandInterface $command)
+    {
+        $result = parent::execute($command);
+        return new Response($result->toArray());
     }
 } 

@@ -9,17 +9,41 @@
  */
 class GeonamesTest extends PHPUnit_Framework_TestCase
 {
-    public function testPostalCodeSearch()
+    /**
+     * @var string you may use your own registered username for testing - demo user is often over the daily usage limit :-0
+     */
+    public $username = 'demo';
+
+    /**
+     * @dataProvider dataProvider
+     */
+    public function testCommands($command, $params)
     {
-        // you may use a different username for testing - demo user is often over the daily usage limit :-0
-        $username = 'demo';
+        $client = new spacedealer\geonames\Geonames($this->username);
 
-        $client = new spacedealer\geonames\Geonames($username);
-        $response = $client->postalCodeSearch([
-            'postalcode' => '10119',
-        ]);
+        /** @var \spacedealer\geonames\Response $response */
+        $response = $client->$command($params);
 
-        $data = $response->toArray();
-        $this->assertArrayHasKey('postalCodes', $data);
+        // skip test if user is over limit
+        if (!$response->isOk() && $response['value'] == 18) {
+            $this->markTestSkipped($response['message']);
+        }
+        $this->assertTrue($response->isOk());
+    }
+
+    /**
+     * @todo add more test data
+     * @return array
+     */
+    public function dataProvider()
+    {
+        return [
+            [
+                'postalCodeSearch',
+                [
+                    'postalcode' => '10119',
+                ]
+            ]
+        ];
     }
 }
