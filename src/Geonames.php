@@ -59,18 +59,27 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 class Geonames extends GuzzleClient
 {
     /**
-     * @param string $username
-     * @param string $lang
+     * @param string $username registered username
+     * @param string $lang language code for responses
+     * @param string|null $baseUrl override default base url
      */
-    public function __construct($username, $lang = 'en')
+    public function __construct($username, $lang = 'en', $baseUrl = null)
     {
         //  $this->username = $username;
         $client = new Client();
 
         // load description config file
         $descriptionConfig = require(__DIR__ . '/resources/config.php');
+
+        // overwrite default base url
+        if ($baseUrl) {
+            $descriptionConfig['baseUrl'] = $baseUrl;
+        }
+
+        // create description
         $description = new Description($descriptionConfig);
 
+        // init client and set default values
         parent::__construct($client, $description, [
             'defaults' => [
                 'username' => $username,
