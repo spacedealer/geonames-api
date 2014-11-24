@@ -1,6 +1,6 @@
 {
 	"name": "spacedealer/geonames-api",
-	"description": "Geonames.org api client based on guzzle 4",
+	"description": "Geonames.org api client library based on guzzle 4",
 	"keywords": [
 		"geonames",
 		"guzzle",
