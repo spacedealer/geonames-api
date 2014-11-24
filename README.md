@@ -3,6 +3,8 @@ Geonames.org REST api client PHP library
 
 **Attention**: Please do not use in production environments. It‘s WIP.
 
+[ ![Codeship Status for spacedealer/geonames-api](https://codeship.com/projects/8d864740-55f5-0132-aaf0-0a29efabe26e/status)](https://codeship.com/projects/49421)
+
 TBD
 
 
