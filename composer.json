@@ -1,6 +1,19 @@
 {
 	"name": "spacedealer/geonames-api",
-	"description": "Guzzle based geonames.org api client",
+	"description": "Geonames.org api client based on guzzle 4",
+	"keywords": [
+		"geonames",
+		"guzzle",
+		"REST",
+		"api",
+		"client"
+	],
+	"homepage": "https://bitbucket.org/spacedealer/geonames-api",
+	"license": "BSD-3-Clause",
+	"support": {
+		"issues": "https://bitbucket.org/spacedealer/geonames-api/issues?status=new&status=open",
+		"source": "https://bitbucket.org/spacedealer/geonames-api"
+	},
 	"authors": [
 		{
 			"name": "Dirk Adler",
