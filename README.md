@@ -3,12 +3,11 @@ Geonames.org REST api client PHP library
 
 **Attention**: Please do not use in production environments. It‘s WIP.
 
+TBD
+
 [![Build Status](https://travis-ci.org/spacedealer/geonames-api.svg)](https://travis-ci.org/spacedealer/geonames-api)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/131220d9-7a2d-41c2-aa28-f08a7c89bcff/mini.png)](https://insight.sensiolabs.com/projects/131220d9-7a2d-41c2-aa28-f08a7c89bcff)
 [![Dependency Status](https://www.versioneye.com/user/projects/54748bd898b2e85e67000142/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54748bd898b2e85e67000142)
-
-TBD
-
 
 Requirements
 ------------
