@@ -1,5 +1,5 @@
 <?php
- /**
+/**
  * bootstrap.php file.
  *
  * @author Dirk Adler <adler@spacedealer.de>

@@ -7,7 +7,6 @@
  * @copyright Copyright &copy; 2014 spacedealer GmbH
  */
 
-
 namespace spacedealer\geonames\api;
 
 use GuzzleHttp\Client;
@@ -17,7 +16,6 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 /**
  * Class Geonames
- *
  *
  * @method Response astergdem() astergdem(array $params)
  * @method Response children() children(array $params)

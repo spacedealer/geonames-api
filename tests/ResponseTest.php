@@ -1,11 +1,14 @@
 <?php
-
 /**
- * GeonamesTest.php file.
+ * ResponseTest.php file.
  *
  * @author Dirk Adler <adler@spacedealer.de>
  * @link http://www.spacedealer.de
  * @copyright Copyright &copy; 2014 spacedealer GmbH
+ */
+
+/**
+ * Class ResponseTest
  */
 class ResponseTest extends PHPUnit_Framework_TestCase
 {
