@@ -63,7 +63,6 @@ class Geonames extends GuzzleClient
      */
     public function __construct($username, $lang = 'en', $baseUrl = null)
     {
-        //  $this->username = $username;
         $client = new Client();
 
         // load description config file
