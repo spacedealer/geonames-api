@@ -8,11 +8,11 @@
 		"api",
 		"client"
 	],
-	"homepage": "https://bitbucket.org/spacedealer/geonames-api",
+	"homepage": "https://github.com/spacedealer/geonames-api",
 	"license": "BSD-3-Clause",
 	"support": {
-		"issues": "https://bitbucket.org/spacedealer/geonames-api/issues?status=new&status=open",
-		"source": "https://bitbucket.org/spacedealer/geonames-api"
+		"issues": "https://github.com/spacedealer/geonames-api/issues",
+		"source": "https://github.com/spacedealer/geonames-api"
 	},
 	"authors": [
 		{
