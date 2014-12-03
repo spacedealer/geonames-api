@@ -39,7 +39,6 @@ class GeonamesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @todo add more test data
      * @return array
      */
     public function dataProvider()
@@ -48,7 +47,8 @@ class GeonamesTest extends \PHPUnit_Framework_TestCase
             [
                 'postalCodeSearch',
                 [
-                    'postalcode' => '10119',
+                    'postalcode' => '10997',
+                    'country' => 'de',
                 ]
             ]
         ];
