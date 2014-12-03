@@ -7,10 +7,14 @@
  * @copyright Copyright &copy; 2014 spacedealer GmbH
  */
 
+namespace spacedealer\tests\geonames\api;
+
+use spacedealer\geonames\api\Geonames;
+
 /**
  * Class GeonamesTest
  */
-class GeonamesTest extends PHPUnit_Framework_TestCase
+class GeonamesTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var string you may use your own registered username for testing - demo user is often over the daily usage limit :-0
@@ -22,7 +26,7 @@ class GeonamesTest extends PHPUnit_Framework_TestCase
      */
     public function testCommands($command, $params)
     {
-        $client = new spacedealer\geonames\api\Geonames($this->username);
+        $client = new Geonames($this->username);
 
         /** @var \spacedealer\geonames\api\Response $response */
         $response = $client->$command($params);
