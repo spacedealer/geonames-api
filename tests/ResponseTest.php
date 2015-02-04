@@ -42,8 +42,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $array = $response->toArray();
-        $this->assertEquals(['code' => 0], $array);
+        $this->assertEquals(0, $response['code']);
     }
 
     /**
@@ -53,13 +52,10 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     {
         $response = new Response([
             'lat' => 0,
-            'lng' => 0,
+            'lng' => 1,
         ]);
 
-        $array = $response->toArray();
-        $this->assertEquals([
-            'lat' => 0,
-            'lng' => 0,
-        ], $array);
+        $this->assertEquals(0, $response['lat']);
+        $this->assertEquals(1, $response['lng']);
     }
 }

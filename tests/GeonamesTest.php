@@ -9,6 +9,8 @@
 
 namespace spacedealer\tests\geonames\api;
 
+use GuzzleHttp\Subscriber\History;
+use GuzzleHttp\Subscriber\Mock;
 use spacedealer\geonames\api\Geonames;
 
 /**
@@ -17,24 +19,39 @@ use spacedealer\geonames\api\Geonames;
 class GeonamesTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var string you may use your own registered username for testing - demo user is often over the daily usage limit :-0
+     * @var string Official demo user name
      */
     public $username = 'demo';
 
     /**
      * @dataProvider dataProvider
+     * \spacedealer\geonames\api\Response $response
      */
-    public function testCommands($command, $params)
+    public function testCommands($command, $params, $responseFile = null)
     {
+        // init api client class
         $client = new Geonames($this->username);
 
-        /** @var \spacedealer\geonames\api\Response $response */
+        // load mock response data
+        if (!$responseFile) {
+            $responseFile = 'geonames-' . $command . '.txt';
+        }
+        $mockResponse = file_get_contents(__DIR__ . '/responses/' . $responseFile);
+
+        // create mock response
+        $mock = new Mock([
+            $mockResponse,
+        ]);
+
+        // add the mock subscriber to the client
+        $client->getHttpClient()->getEmitter()->attach($mock);
+
+        // add history
+        // $client->getHttpClient()->getEmitter()->attach($history = new History());
+
+        // execute request
         $response = $client->$command($params);
 
-        // skip test if user is over limit
-        if (!$response->isOk() && $response['value'] == 18) {
-            $this->markTestSkipped($response['message']);
-        }
         $this->assertTrue($response->isOk());
     }
 

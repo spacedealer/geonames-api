@@ -24,7 +24,6 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
  * @method Response countryInfo() countryInfo(array $params)
  * @method Response countrySubdivision() countrySubdivision(array $params)
  * @method Response earthquakes() earthquakes(array $params)
- * @todo support: Response extendedFindNearby() extendedFindNearby(array $params)
  * @method Response findNearby() findNearby(array $params)
  * @method Response findNearbyPlaceName() findNearbyPlaceName(array $params)
  * @method Response findNearbyPostalCodes() findNearbyPostalCodes(array $params)
@@ -51,6 +50,8 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
  * @method Response weatherIcao() weatherIcao(array $params)
  * @method Response wikipediaBoundingBox() wikipediaBoundingBox(array $params)
  * @method Response wikipediaSearch() wikipediaSearch(array $params)
+ *
+ * Not support: Response extendedFindNearby() extendedFindNearby(array $params)
  *
  * @package spacedealer\geonames\api
  */
@@ -87,11 +88,11 @@ class Geonames extends GuzzleClient
 
     /**
      * @param CommandInterface $command
-     * @return mixed|null|Response
+     * @return Response
      */
     public function execute(CommandInterface $command)
     {
         $result = parent::execute($command);
-        return new Response($result->toArray());
+        return new Response($result ?: []);
     }
 } 

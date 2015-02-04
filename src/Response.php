@@ -9,12 +9,14 @@
 
 namespace spacedealer\geonames\api;
 
+use GuzzleHttp\Ring\Future\CompletedFutureArray;
+
 /**
  * Class Response
  *
  * @package spacedealer\geonames\api
  */
-class Response extends \GuzzleHttp\Command\Model
+class Response extends CompletedFutureArray
 {
     /**
      * @var bool

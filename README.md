@@ -2,7 +2,7 @@
 
 **Attention**: Please do not use in production environments. It‘s WIP.
 
-This is a simple [geonames API](http://www.geonames.org/export/web-services.html) client based on [Guzzle 4](http://docs.guzzlephp.org/en/guzzle4/).
+This is a simple [geonames API](http://www.geonames.org/export/web-services.html) client based on [Guzzle 5](http://docs.guzzlephp.org/en/latest/).
 
 [![Build Status](https://travis-ci.org/spacedealer/geonames-api.svg)](https://travis-ci.org/spacedealer/geonames-api)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/131220d9-7a2d-41c2-aa28-f08a7c89bcff/mini.png)](https://insight.sensiolabs.com/projects/131220d9-7a2d-41c2-aa28-f08a7c89bcff)
@@ -11,9 +11,9 @@ This is a simple [geonames API](http://www.geonames.org/export/web-services.html
 ## Requirements
 
  - php >= 5.4
- - guzzle 4
- - guzzle services 0.3
- - guzzle command 0.6
+ - guzzle 5
+ - guzzle services 0.5
+ - guzzle command 0.7
  
 ## Installation
 
@@ -58,7 +58,6 @@ try {
 ## Todos
 
  - complete unit tests
- - upgrade to guzzle 5 and latest command & services versions
  - improve response model handling
 
 ## Resources
