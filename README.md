@@ -59,6 +59,7 @@ try {
 
  - complete unit tests
  - improve response model handling
+ - add support for xml only command: extendedFindNearby
 
 ## Resources
 

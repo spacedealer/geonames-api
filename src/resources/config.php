@@ -5,7 +5,6 @@
  * @author Dirk Adler <adler@spacedealer.de>
  * @link http://www.spacedealer.de
  * @copyright Copyright &copy; 2014 spacedealer GmbH
- * @todo finish description
  */
 return [
     'baseUrl' => 'http://api.geonames.org/',
@@ -248,7 +247,6 @@ return [
                 ]
             ]
         ],
-        // todo: add xml only command: extendedFindNearby
         // Result : returns the closest toponym for the lat/lng query as xml document
         // Info: http://www.geonames.org/export/web-services.html#findNearby
         // Expected Results: view-source:http://api.geonames.org/findNearbyJSON?formatted=true&lat=48.865618158309374&lng=2.344207763671875&fclass=P&fcode=PPLA&fcode=PPL&fcode=PPLC&username=demo&style=full
