@@ -9,7 +9,6 @@
 
 namespace spacedealer\tests\geonames\api;
 
-use GuzzleHttp\Subscriber\History;
 use GuzzleHttp\Subscriber\Mock;
 use spacedealer\geonames\api\Geonames;
 
@@ -69,5 +68,20 @@ class GeonamesTest extends \PHPUnit_Framework_TestCase
                 ]
             ]
         ];
+    }
+
+    public function testBaseUrl()
+    {
+        // init api client class
+        $client = new Geonames($this->username, 'en', null);
+        $this->assertEquals('http://api.geonames.org/', (string)$client->getDescription()->getBaseUrl());
+
+        // init api client class
+        $client = new Geonames($this->username, 'en', '');
+        $this->assertEquals('', (string)$client->getDescription()->getBaseUrl());
+
+        // init api client class
+        $client = new Geonames($this->username, 'en', 'https://example.com');
+        $this->assertEquals('https://example.com', (string)$client->getDescription()->getBaseUrl());
     }
 }

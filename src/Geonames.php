@@ -70,7 +70,7 @@ class Geonames extends GuzzleClient
         $descriptionConfig = require(__DIR__ . '/resources/config.php');
 
         // overwrite default base url
-        if ($baseUrl) {
+        if ($baseUrl !== null) {
             $descriptionConfig['baseUrl'] = $baseUrl;
         }
 
