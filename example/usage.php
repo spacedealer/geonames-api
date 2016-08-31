@@ -19,10 +19,10 @@ try {
     if ($response->isOk()) {
         $count = $response->count();
         echo "Found entries: $count" . PHP_EOL;
-        $placeName = $response->getPath('0/placeName');
+        $placeName = $response[0]['placeName'];
         echo "Place name   : " . $placeName . PHP_EOL;
     } else {
-        echo $response->getPath('message') . PHP_EOL;
+        echo $response['message'] . PHP_EOL;
     }
 } catch (\RuntimeException $e) {
     echo $e->getMessage() . PHP_EOL;
